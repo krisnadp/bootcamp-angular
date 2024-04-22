@@ -3,26 +3,46 @@
         <div class="mb-3">
             <label for="exampleInputName" class="form-label">Name</label>
             <input type="text" class="form-control" id="exampleInputName" name="name" formControlName="full_name" required>
-            <div *ngIf="full_name?.invalid && (full_name?.dirty || full_name?.touched)" class="form-text">
-                <div *ngif="full_name?.errors?.required">Name is required</div>
-                <div *ngif="full_name?.errors?.minLength">Minimum length name is 3 char</div>
+            <div *ngIf="full_name?.invalid && (full_name?.dirty || full_name?.touched)" class="text-danger">
+                <div *ngIf="full_name?.errors?.['required']">Name is required</div>
+                <div *ngIf="full_name?.errors?.['minlength']">Minimum length name is 3 char</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Email</label>
+            <input type="text" class="form-control" id="exampleInputEmail" name="email" formControlName="email_value" required>
+            <div *ngIf="email_value?.invalid && (email_value?.dirty || email_value?.touched)" class="text-danger">
+                <div *ngIf="email_value?.errors?.['required']">email is required</div>
+                <div *ngIf="email_value?.errors?.['email']">Email is invalid</div>
             </div>
         </div>
         <div class="mb-3">
             <label for="exampleInputGender" class="form-label">Gender</label>
-            <select class="form-select" id="exampleInputGender" name="gender" required>
+            <select class="form-select" id="exampleInputGender" name="gender" formControlName="gender_value" required>
                 <option selected disabled>Open this select menu</option>
                 <option *ngFor="let option of genders" [value]="option">{{ option }}</option>
               </select>
+              <div *ngIf="gender_value?.invalid && (gender_value?.dirty || gender_value?.touched)" class="text-danger">
+                <div *ngIf="gender_value?.errors?.['required']">Gender is required</div>
+            </div>
         </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <label for="exampleInputBirthday" class="form-label">Birtday</label>
+            <input type="date" class="form-control" id="exampleInputBirthday" name="name" formControlName="birtday_value" required>
+            <div *ngIf="birtday_value?.invalid && (birtday_value?.dirty || birtday_value?.touched)" class="text-danger">
+                <div *ngIf="birtday_value?.errors?.['required']">Birthday is required</div>
+            </div>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="exampleInputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword" name="password" formControlName="password_value" required>
+            <div *ngIf="password_value?.invalid && (password_value?.dirty || password_value?.touched)" class="text-danger">
+                <div *ngIf="!password_value?.value?.match('^(?=.*[A-Z])')"> At least one uppercase</div> 
+                <div *ngIf="!password_value?.value?.match('(?=.*[a-z])')">At least one LowerCase</div> 
+                <div *ngIf="!password_value?.value?.match('(.*[0-9].*)')">At least one digit number</div> 
+                <div *ngIf="!password_value?.value?.match('(?=.*[!@#$%^&*])')">At least one special Char</div> 
+                <div *ngIf="!password_value?.value?.match('.{8,}')">At least 8 character</div> 
+            </div>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
