@@ -1,0 +1,5 @@
+<!-- <button class="btn" [ngClass]="isButtonError ? 'btn-secondary' : 'btn-primary'">button works!</button>
+    <button [class]="isButtonError ? 'btn btn-secondary' : 'btn btn-primary'">button works!</button>
+    <button class="btn" [ngClass]="{'btn-primary' : isButtonError}">button works!</button> -->
+    
+    <button class="btn" [ngStyle]="{'color' : textColor}" (click)="clickMe()">button works!</button>
