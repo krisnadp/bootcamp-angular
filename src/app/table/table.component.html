@@ -1,0 +1,58 @@
+<div class="flex items-center justify-center mt-10">
+    <div class="container px-10 mt-4">
+        <div class="not-prose relative bg-slate-50 rounded-xl overflow-hidden ">
+            <div class="absolute inset-0"
+                style="background-position: 10px 10px;"></div>
+            <div class="relative rounded-xl overflow-auto">
+                <div class="shadow-sm overflow-hidden my-8">
+                    <table class="border-collapse table-fixed w-full text-sm">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="border-b  font-medium p-4 pl-8 pt-0 pb-3 text-black  text-left">
+                                    Name</th>
+                                <th
+                                    class="border-b  font-medium p-4 pt-0 pb-3 text-black  text-left">
+                                    Email</th>
+                                <th
+                                    class="border-b  font-medium p-4 pt-0 pb-3 text-black  text-left">
+                                    Gender</th>
+                                <th
+                                    class="border-b  font-medium p-4 pr-8 pt-0 pb-3 text-black  text-left">
+                                    Currency</th>
+                                <th
+                                    class="border-b  font-medium p-4 pr-8 pt-0 pb-3 text-black  text-left">
+                                    Latest Transaction</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-slate-50">
+                            <tr *ngFor="let data of datas" [ngStyle]="{ 'background-color': data.gender | genderChecker }">
+                                <td
+                                    class="border-b border-slate-300  p-4 pl-8 text-black ">
+                                    {{ data.first_name | uppercase}} {{ data.last_name | uppercase }}
+                                </td>
+                                <td
+                                    class="border-b border-slate-300  p-4 text-black ">
+                                    {{ data.email }}
+                                </td>
+                                <td
+                                    class="border-b border-slate-300  p-4 pr-8 text-black ">
+                                    {{ data.gender }}
+                                </td>
+                                <td
+                                    class="border-b border-slate-300  p-4 pr-8 text-black ">
+                                    {{ data.currency | currencyChecker }}
+                                </td>
+                                <td
+                                    class="border-b border-slate-300  p-4 pr-8 text-black ">
+                                    {{ data.latest_transaction | date }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5"></div>
+        </div>
+    </div>
+</div>

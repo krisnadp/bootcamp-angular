@@ -1,8 +1,71 @@
+<div class="md:container mx-auto px-3">
+    <form (ngSubmit)="onSubmit()" [formGroup]='form' class="">
+        <div class="grid grid-cols-2 gap-5">
+            <div class="container">
+                <div class="container mb-5">
+                    <label class="block">
+                        <span
+                            class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700 capitalize">
+                            Name
+                        </span>
+                        <input type="name" name="name"
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                            formControlName="full_name" placeholder="Please enter your name" required>
+                        <div *ngIf="full_name?.invalid && (full_name?.dirty || full_name?.touched)"
+                            class="text-red-500 text-xs capitalize mt-2">
+                            <span *ngIf="full_name?.errors?.['required']">Name is required *</span>
+                            <span *ngIf="full_name?.errors?.['minlength']">Minimum length name is 3 char *</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="container mb-5">
+                    <label class="block">
+                        <span
+                            class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700 capitalize">
+                            Gender
+                        </span>
+                        <select name="gender"
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                            formControlName="gender_value" placeholder="Open this select menu" required>
+                            <option selected disabled>Open this select menu</option>
+                            <option *ngFor="let option of genders" [value]="option">{{ option }}</option>
+                        </select>
+                        <div *ngIf="gender_value?.invalid && (gender_value?.dirty || gender_value?.touched)" 
+                        class="text-red-500 text-xs capitalize mt-2">
+                            <span *ngIf="gender_value?.errors?.['required']">Gender is required</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container mb-5">
+                    <label class="block">
+                        <span
+                            class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700 capitalize">
+                            email
+                        </span>
+                        <input type="email" name="email"
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                            formControlName="email_value" placeholder="email@example.com" required>
+                        <div *ngIf="email_value?.invalid && (email_value?.dirty || email_value?.touched)"
+                            class="text-red-500 text-xs capitalize mt-2">
+                            <span *ngIf="email_value?.errors?.['required']">email is required</span>
+                            <span *ngIf="email_value?.errors?.['email']">Email is invalid</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <div class="container mt-5">
-    <form (ngSubmit)="onSubmit()" [formGroup] = 'form' class="">
-        <div class="mb-3">
+    <form (ngSubmit)="onSubmit()" [formGroup]='form' class="">
+        <!-- <div class="mb-3">
             <label for="exampleInputName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="exampleInputName" name="name" formControlName="full_name" required>
+            <input type="text" class="form-control" id="exampleInputName" name="name" formControlName="full_name"
+                required>
             <div *ngIf="full_name?.invalid && (full_name?.dirty || full_name?.touched)" class="text-danger">
                 <div *ngIf="full_name?.errors?.['required']">Name is required</div>
                 <div *ngIf="full_name?.errors?.['minlength']">Minimum length name is 3 char</div>
@@ -10,38 +73,42 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail" class="form-label">Email</label>
-            <input type="text" class="form-control" id="exampleInputEmail" name="email" formControlName="email_value" required>
+            <input type="text" class="form-control" id="exampleInputEmail" name="email" formControlName="email_value"
+                required>
             <div *ngIf="email_value?.invalid && (email_value?.dirty || email_value?.touched)" class="text-danger">
                 <div *ngIf="email_value?.errors?.['required']">email is required</div>
                 <div *ngIf="email_value?.errors?.['email']">Email is invalid</div>
             </div>
-        </div>
+        </div> -->
         <div class="mb-3">
             <label for="exampleInputGender" class="form-label">Gender</label>
             <select class="form-select" id="exampleInputGender" name="gender" formControlName="gender_value" required>
                 <option selected disabled>Open this select menu</option>
                 <option *ngFor="let option of genders" [value]="option">{{ option }}</option>
-              </select>
-              <div *ngIf="gender_value?.invalid && (gender_value?.dirty || gender_value?.touched)" class="text-danger">
+            </select>
+            <div *ngIf="gender_value?.invalid && (gender_value?.dirty || gender_value?.touched)" class="text-danger">
                 <div *ngIf="gender_value?.errors?.['required']">Gender is required</div>
             </div>
         </div>
         <div class="mb-3">
             <label for="exampleInputBirthday" class="form-label">Birtday</label>
-            <input type="date" class="form-control" id="exampleInputBirthday" name="name" formControlName="birtday_value" required>
+            <input type="date" class="form-control" id="exampleInputBirthday" name="name"
+                formControlName="birtday_value" required>
             <div *ngIf="birtday_value?.invalid && (birtday_value?.dirty || birtday_value?.touched)" class="text-danger">
                 <div *ngIf="birtday_value?.errors?.['required']">Birthday is required</div>
             </div>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword" name="password" formControlName="password_value" required>
-            <div *ngIf="password_value?.invalid && (password_value?.dirty || password_value?.touched)" class="text-danger">
-                <div *ngIf="!password_value?.value?.match('^(?=.*[A-Z])')"> At least one uppercase</div> 
-                <div *ngIf="!password_value?.value?.match('(?=.*[a-z])')">At least one LowerCase</div> 
-                <div *ngIf="!password_value?.value?.match('(.*[0-9].*)')">At least one digit number</div> 
-                <div *ngIf="!password_value?.value?.match('(?=.*[!@#$%^&*])')">At least one special Char</div> 
-                <div *ngIf="!password_value?.value?.match('.{8,}')">At least 8 character</div> 
+            <input type="password" class="form-control" id="exampleInputPassword" name="password"
+                formControlName="password_value" required>
+            <div *ngIf="password_value?.invalid && (password_value?.dirty || password_value?.touched)"
+                class="text-danger">
+                <div *ngIf="!password_value?.value?.match('^(?=.*[A-Z])')"> At least one uppercase</div>
+                <div *ngIf="!password_value?.value?.match('(?=.*[a-z])')">At least one LowerCase</div>
+                <div *ngIf="!password_value?.value?.match('(.*[0-9].*)')">At least one digit number</div>
+                <div *ngIf="!password_value?.value?.match('(?=.*[!@#$%^&*])')">At least one special Char</div>
+                <div *ngIf="!password_value?.value?.match('.{8,}')">At least 8 character</div>
             </div>
         </div>
         <div class="mb-3 form-check">
